@@ -57,7 +57,8 @@ stages {
      stage('Artifact upload') {
       steps {
      //nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/helloworld.war']], mavenCoordinate: [artifactId: 'hello-world-servlet-example', groupId: 'com.geekcap.vmturbo', packaging: 'war', version: '$BUILD_NUMBER']]]
-      nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/helloworld.war']], mavenCoordinate: [artifactId: 'hello-world-servlet-example', groupId: 'com.geekcap.vmturbo', packaging: 'war', version: '$BUILD_NUMBER']]]
+     //nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/helloworld.war']], mavenCoordinate: [artifactId: 'hello-world-servlet-example', groupId: 'com.geekcap.vmturbo', packaging: 'war', version: '$BUILD_NUMBER']]]
+       nexusArtifactUploader artifacts: [[artifactId: 'hello-world-servlet-example', classifier: '', file: 'target/helloworld.war', type: 'war']], credentialsId: 'nexus-cred', groupId: 'com.geekcap.vmturbo', nexusUrl: '3.133.135.115:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'hello-world-servlet', version: '${BUILD_NUMBER}'   
       }
  }
     
